@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { SessionContext } from '@/context/session-context'
+import { Nav } from '@/components/ui/nav'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <SessionContext>
+          <main className="grid w-screen h-screen grid-cols-6 grid-rows-7">
+            <Nav />
+            <div className="flex flex-col col-span-5 row-span-7">
+              {children}
+            </div>
+            <Toaster />
+          </main>
+        </SessionContext>
       </body>
     </html>
   )

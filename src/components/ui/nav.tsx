@@ -14,7 +14,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SigninForm, SignupForm } from "./auth-forms";
 import { useSession } from "next-auth/react";
 import { Button } from "./button";
-import { Notes } from "./notes";
 import { Note } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { getUserNotes } from "@/actions/get-user-notes";
@@ -35,9 +34,15 @@ export const Nav = () => {
       <div className="w-5/6 space-y-3">
         {status === "loading" ? <div className="w-full py-2 text-center">Loading</div> : null}
         {notes.map((note) => {
-          return <NavItem name={note.name} id={note.id} key={note.id} />
+          return <NavItem 
+            name={note.name} 
+            id={note.id} 
+            notes={notes}
+            setNotes={setNotes}
+            key={note.id} 
+          />
         })}
-        <NewNoteDialog />
+        <NewNoteDialog notes={notes} setNotes={setNotes} />
       </div>
       <div className="absolute bottom-5 left-7 w-5/6">
         {status === "loading" ? (

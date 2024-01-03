@@ -18,6 +18,7 @@ import { updateNoteContent } from "@/actions/update-note";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { Spinner } from "@/components/ui/spinner";
 
 type Response = Omit<Note, "id" | "createdAt">;
 
@@ -38,11 +39,6 @@ const Page = ({ params }: { params: { noteId: string } }) => {
       }
     };
     fetchContent();
-    console.log({
-      note,
-      session,
-      status
-    })
   }, []);
   // convert from base64 to readable string
   useEffect(() => {
@@ -73,7 +69,7 @@ const Page = ({ params }: { params: { noteId: string } }) => {
   if(!note || status === "loading") {
     return (
       <div className="w-full h-full flex justify-center items-center flex-col gap-5">
-        <div className="w-12 h-12 border-4 border-t-neutral-800 border-r-neutral-400 border-b-neutral-400 border-l-neutral-400 rounded-full animate-spin"></div>
+        <Spinner />
       </div>
     ) 
   }

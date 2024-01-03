@@ -13,14 +13,23 @@ import { Button } from "./button";
 import { deleteNote } from "@/actions/delete-note";
 import { useRouter } from "next/navigation";
 import { IoMdEye, IoMdTrash } from "react-icons/io";
+import { Note } from "@prisma/client";
+import { Dispatch, SetStateAction } from "react";
 
 interface NavItemProps {
   name: string;
   id: string;
+  notes: Note[];
+  setNotes: Dispatch<SetStateAction<Note[]>>;
 }
 
-export const NavItem: React.FC<NavItemProps> = ({ name, id }) => {
+export const NavItem: React.FC<NavItemProps> = ({ name, id, notes, setNotes }) => {
   const router = useRouter();
+  const handleDelete = async () => {
+    deleteNote(id)
+    const updatedNotes = notes.filter(note => note.id !== id)
+    setNotes(updatedNotes)
+  }
   return (
     <div className="border border-neutral-200 rounded-md px-3 py-2 flex justify-between ">
       <span>{name}</span>
@@ -46,7 +55,7 @@ export const NavItem: React.FC<NavItemProps> = ({ name, id }) => {
                 </Button>
               </DialogClose>
               <DialogClose asChild>
-                <Button variant="destructive" onClick={() => deleteNote(id)}>
+                <Button variant="destructive" onClick={handleDelete}>
                   Confirm
                 </Button>
               </DialogClose>

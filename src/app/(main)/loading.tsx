@@ -1,8 +1,10 @@
+import { Spinner } from "@/components/ui/spinner";
+
 const Loading = () => {
   return (
-    <>
-      Loading...
-    </>
+    <div className="w-full h-full flex items-center justify-center">
+      <Spinner />
+    </div>
   )
 }
 

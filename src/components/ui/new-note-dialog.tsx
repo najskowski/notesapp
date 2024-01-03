@@ -13,16 +13,23 @@ import { Button } from "./button"
 import { BiPencil } from "react-icons/bi"
 import { useRouter } from "next/navigation"
 import { Input } from "./input"
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { createNote } from "@/actions/create-note"
 import { useSession } from "next-auth/react"
+import { Note } from "@prisma/client"
 
-export const NewNoteDialog = () => {
+interface NewNoteDialogProps {
+  notes: Note[];
+  setNotes: Dispatch<SetStateAction<Note[]>>
+}
+
+export const NewNoteDialog = ({ notes, setNotes }: NewNoteDialogProps) => {
   const router = useRouter()
   const [noteName, setNoteName] = useState("")
   const { data: session, status } = useSession()
-  const handleSubmit = () => {
-    createNote({ name: noteName, belongsTo: session?.user?.email! })
+  const handleSubmit = async () => {
+    const result = await createNote(noteName, session?.user?.email!)
+    setNotes([...notes, result])
   }
   return (
     <Dialog>

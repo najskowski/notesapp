@@ -3,12 +3,7 @@
 import prisma from "@/lib/db"
 import { revalidatePath } from "next/cache";
 
-interface Note {
-  name: string;
-  belongsTo: string;
-}
-
-const createNote = async ({ name, belongsTo }: Note) => {
+const createNote = async (name: string, belongsTo: string) => {
   const result = await prisma.note.create({
     data: {
       name,
