@@ -5,6 +5,6 @@ Technologies used in this project:
 * React.js & Next.js
 * typescript
 * MongoDB (database)
-* Prisma (ORM)
-* shadcn
+* [Prisma (ORM)](https://www.prisma.io/)
+* [shadcn](https://ui.shadcn.com/)
 
