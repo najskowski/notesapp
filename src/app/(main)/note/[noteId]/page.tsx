@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getNote } from "@/actions/get-note";
 import { convertBase64 } from "@/lib/utils";
 import { Note } from "@prisma/client";
@@ -118,9 +118,13 @@ const Page = ({ params }: { params: { noteId: string } }) => {
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel>
-          <Markdown className="p-7 markdown">
-            {content}
-          </Markdown>
+          <div className="p-7 markdown">
+            {content.split("\n").map((line, index) => (
+              <React.Fragment key={index}>
+                <Markdown>{line}</Markdown>
+              </React.Fragment>
+            ))}
+          </div>
         </ResizablePanel>
       </ResizablePanelGroup>
     </>
