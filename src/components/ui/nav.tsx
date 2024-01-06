@@ -23,8 +23,10 @@ export const Nav = () => {
   const [notes, setNotes] = useState<Note[]>([])
   useEffect(() => {
     const loadNotes = async () => {
-      const notes = await getUserNotes(session?.user?.email || "")
-      setNotes(notes)
+      if(session?.user?.email) {
+        const notes = await getUserNotes(session?.user?.email)
+        setNotes(notes)
+      }
       return
     }
     loadNotes()

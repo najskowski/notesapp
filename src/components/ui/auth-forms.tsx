@@ -11,7 +11,7 @@ import { signIn } from "next-auth/react";
 const SigninForm = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   const handleSubmit = () => {
-    signIn("credentials", credentials)
+    signIn("credentials", { redirect: false, ...credentials })
   }
   return (
     <>

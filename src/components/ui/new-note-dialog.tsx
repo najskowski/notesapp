@@ -24,7 +24,6 @@ interface NewNoteDialogProps {
 }
 
 export const NewNoteDialog = ({ notes, setNotes }: NewNoteDialogProps) => {
-  const router = useRouter()
   const [noteName, setNoteName] = useState("")
   const { data: session, status } = useSession()
   const handleSubmit = async () => {
@@ -34,7 +33,8 @@ export const NewNoteDialog = ({ notes, setNotes }: NewNoteDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger 
-        className="flex items-center justify-center gap-2 bg-black text-primary-foreground w-full py-2 rounded-md hover:bg-primary/90 text-sm font-medium transition-colors"
+        className="flex items-center justify-center gap-2 bg-black text-primary-foreground w-full py-2 rounded-md hover:bg-primary/90 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50"
+        disabled={status === "loading" || status === "unauthenticated"}
       >
         <>
           <BiPencil size={22} />

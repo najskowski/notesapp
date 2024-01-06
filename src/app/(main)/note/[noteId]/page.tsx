@@ -19,16 +19,21 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Spinner } from "@/components/ui/spinner";
+import { useDebounce } from "usehooks-ts"
 
 type Response = Omit<Note, "id" | "createdAt">;
 
 const Page = ({ params }: { params: { noteId: string } }) => {
+  
   const [note, setNote] = useState<Response | null>(null);
   const [content, setContent] = useState("");
+  const debouncedContent = useDebounce(content, 4000)
+  
   const [isSaving, setIsSaving] = useState(false)
   const { toast } = useToast()
   const router = useRouter()
   const { data: session, status } = useSession();
+
   // fetch note
   useEffect(() => {
     const fetchContent = async () => {
@@ -48,6 +53,8 @@ const Page = ({ params }: { params: { noteId: string } }) => {
       setContent("");
     }
   }, [note]);
+  // automatically save note after 4 seconds of not typing
+  useEffect(() => { saveNote() }, [debouncedContent])
   const saveNote = async () => {
     try {
       setIsSaving(true)
