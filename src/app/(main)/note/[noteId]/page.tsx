@@ -21,14 +21,11 @@ import { useSession } from "next-auth/react";
 import { Spinner } from "@/components/ui/spinner";
 import { useDebounce } from "usehooks-ts"
 
-type Response = Omit<Note, "id" | "createdAt">;
-
 const Page = ({ params }: { params: { noteId: string } }) => {
   
-  const [note, setNote] = useState<Response | null>(null);
+  const [note, setNote] = useState<Note | null>(null);
   const [content, setContent] = useState("");
   const debouncedContent = useDebounce(content, 4000)
-  
   const [isSaving, setIsSaving] = useState(false)
   const { toast } = useToast()
   const router = useRouter()
@@ -36,15 +33,14 @@ const Page = ({ params }: { params: { noteId: string } }) => {
 
   // fetch note
   useEffect(() => {
-    const fetchContent = async () => {
-      const response = await getNote(params.noteId);
-      if (response?.content) {
-        setNote(response);
-        return;
+    const fetchNote = async () => {
+      const note = await getNote(params.noteId)
+      if(note) {
+        setNote(note)
       }
-    };
-    fetchContent();
-  }, []);
+    }
+    fetchNote()
+  }, [])
   // convert from base64 to readable string
   useEffect(() => {
     try {

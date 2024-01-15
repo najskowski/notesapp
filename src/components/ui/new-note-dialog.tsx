@@ -20,7 +20,7 @@ import { Note } from "@prisma/client"
 
 interface NewNoteDialogProps {
   notes: Note[];
-  setNotes: Dispatch<SetStateAction<Note[]>>
+  setNotes: Dispatch<SetStateAction<Note[]>>;
 }
 
 export const NewNoteDialog = ({ notes, setNotes }: NewNoteDialogProps) => {

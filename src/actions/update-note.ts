@@ -16,6 +16,6 @@ const updateNoteContent = async ({ id, content }: { id: string, content: string 
     data: { content }
   })
   return result;
-} 
+}
 
 export { updateNoteName, updateNoteContent } 

@@ -2,18 +2,13 @@
 
 import prisma from "@/lib/db"
 
-const getNote = (noteId: string) => {
-  const result = prisma.note.findFirst({
-    select: {
-      content: true,
-      name: true,
-      belongsTo: true
-    },
+const getNote = async (noteId: string) => {
+  const result = await prisma.note.findFirst({
     where: {
       id: noteId,
     }
   })
-  console.log("FETCHED NOTE CONTENT")
+  console.log(result)
   return result;
 }
 
