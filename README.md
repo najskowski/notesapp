@@ -8,3 +8,6 @@ Technologies used in this project:
 * [Prisma (ORM)](https://www.prisma.io/)
 * [shadcn](https://ui.shadcn.com/)
 
+Features:
+* Real time creating and deleting notes
+* Automatic note saving
