@@ -8,7 +8,6 @@ const getUserNotes = async (email: string) => {
       belongsTo: email
     }
   })
-  console.log("---* NOTES FETCHED *---")
   return notes;
 }
 
