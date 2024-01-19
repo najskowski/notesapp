@@ -45,7 +45,7 @@ export const NavItem: React.FC<NavItemProps> = ({ name, id, notes, setNotes }) =
             <DialogHeader>
               <DialogTitle>Are you sure sure?</DialogTitle>
               <DialogDescription>
-                This action will permamently delete note "{name}"
+                This action will permamently delete note &quot;{name}&quot;
               </DialogDescription>
             </DialogHeader>
             <DialogFooter className="sm:justify-between flex">

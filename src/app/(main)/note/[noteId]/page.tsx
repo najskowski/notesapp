@@ -79,7 +79,7 @@ const Page = ({ params }: { params: { noteId: string } }) => {
   if(status === "unauthenticated" || note?.belongsTo !== session?.user?.email) {
     return (
       <div className="w-full h-full flex justify-center items-center flex-col gap-5">
-        <h1 className="text-3xl font-semibold">You don't have access to this page</h1>
+        <h1 className="text-3xl font-semibold">You don&apos;t have access to this page</h1>
         <Button onClick={() => router.back()}>Go back</Button>
       </div>
     )
