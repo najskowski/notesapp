@@ -1,5 +1,7 @@
 # Quick Notes
 ## Next.js 14 CRUD Markdown notes Application
+### Live website [https://notesapp-8v5d.vercel.app/](https://notesapp-8v5d.vercel.app/)
+![live website screenshot](/public/screenshot.png)
 
 Technologies used in this project:
 * React.js & Next.js
