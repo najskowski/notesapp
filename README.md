@@ -11,3 +11,7 @@ Technologies used in this project:
 Features:
 * Real time creating and deleting notes
 * Automatic note saving
+
+Demo account:
+e-mail: demoaccount@email.com
+password: demoaccount123
